@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from '../app.service';
+import { TeamLabelDTO } from '../models/teamlabels.model';
+import { Player } from '../models/player.model';
 
 @Component({
   selector: 'app-home',
@@ -8,15 +10,26 @@ import { AppService } from '../app.service';
 })
 export class HomeComponent implements OnInit {
 
-  labels = []
+  teamLable:TeamLabelDTO;
+  players:Player[];
   constructor(private appService:AppService) { }
 
   ngOnInit() {
 
-      this.appService.teamLabels().subscribe(res=>{
-         this.labels = res["labels"];
+      this.appService.getTeamLabels().subscribe(res=>{
+            this.teamLable = res;
       })
 
+  }
+  getTeamInformation(event){
+    let teamLabel = event.target.value;
+    if(teamLabel.length != 0){
+    this.appService.getTeamInformation(teamLabel).subscribe(res=>{
+        this.players = res;
+    })
+  }else{
+    this.players = [];
+  }
   }
 
 }
