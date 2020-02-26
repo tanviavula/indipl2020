@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  baseUrl:"http://localhost:8080/ipl2020/team/"
+  //baseUrl:"http://localhost:8080/ipl2020/team/"
+  baseUrl : "https://indipl2020.herokuapp.com/ipl2020/team/"
 };
 
 /*

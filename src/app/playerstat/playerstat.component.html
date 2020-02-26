@@ -1,0 +1,39 @@
+<div class="row mt-2">
+    <div class="col-md-6">
+        <div class="py-2 text-white bg-primary text-center block">
+            <h3>Team IPL - 2020</h3>
+        </div>
+        <label class="mt-2">Select Team</label>
+        <select class="form-control" *ngIf="teamLabelDto"  [(ngModel)]="teamLabel"  (change)="getPlayerData()">
+                <option *ngFor="let label of teamLabelDto.labels" >{{label}}</option>
+        </select>
+
+        <table  class="table" *ngIf="players.length>0">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Label</th>
+                    <th>Role</th>
+                  <th>Price</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let player of players">
+                    <td>{{player.name}}</td>
+                    <td>{{player.label}}</td>
+                    <td>{{player.role}}</td>
+                    <td>{{player.price | currency: 'INR'}}</td>
+                </tr>
+            </tbody>
+        </table>
+  </div>
+    <div class="col-md-6">
+        <div class="py-2 text-white bg-primary text-center block">
+            <h3>Team IPL - 2020</h3>
+       </div>
+
+        <google-chart [data]="pieChart"></google-chart>
+
+    </div>
+</div>
